@@ -1,0 +1,248 @@
+<style>
+ 
+#i4{
+  margin-left:650px;
+}
+#i5{
+  margin-left:645px;
+}
+#i6{
+   margin-left:620px;
+}
+
+}
+  *{
+  margin:0;
+  padding :0;
+  background-color:#DAEDFC;
+ 
+}
+
+#xx{   margin :auto;
+}
+#f{   
+  margin-top:5px;
+ margin-left:40%;
+  color:black;
+}
+
+a{   
+ 
+ margin-left:50%;
+  color:black;
+}
+canvas {align: center;
+  margin-left:36.7%;
+    margin-top:6%;
+    border:3px solid #757575;
+    background-color: #cfd8dc;
+}
+.B{ border: none;
+  color: white;
+ 
+  text-align: center;
+  text-decoration: none;
+  disply: online-block;
+  font-size: 16px;
+  cursor: pointer;
+ }
+
+.b1{ padding: 15px 32px;
+  margin-top: 12px ;
+  margin-left:47.5%;
+   background-color: #ce93d8
+     ;border-radius: 50%;
+}
+.b2{ 
+  padding: 15px 25px;
+   margin-left:29px;
+   background-color:#ffab91;
+  border-radius: 50%;
+}
+.b3{padding: 15px 25px;
+  border-radius: 50%;
+   margin-top:15px;
+    margin-left:40.5%;
+ 
+ background-color: #81d4fa;
+}
+.b4{border-radius: 50%;
+   padding: 15px 25px;
+   margin-left:26px;
+   background-color: #80cbc4;
+}
+.b5{border-radius: 50%; 
+  padding: 15px 20px;
+  margin-top: 16px;
+  margin-left:47.9%;
+   background-color: #c5e1a5;
+}
+
+#dord1{
+   border-style: solid;
+  border-color: lightblue;
+ </style>  
+<tr>
+  <body onload="startGame()">
+
+
+<div class= "movework">
+  <div id ="i4">
+ <td><input type="button" value="forward" name="forward" " onclick="moveup()"></td>
+</div>    
+ <div id ="i6">     
+<td><input type="button" value="left" name="lift" " onclick="moveleft()">
+</td>
+ <td><input type="button" value="stop" name="stop" " onclick="clearmove()"></td>
+   
+<td><input type="button" value="right" name="right" " onclick="moveright()" ></td>
+</div>
+  <div id="i5">
+<td><input type="button" value="backward" name="backward" "  onclick="movedown()"></td>
+</div>
+
+
+ </tr>
+</div>
+ 
+</body>
+<script>
+  function startGame() {
+    myGamePiece = new component(30, 30, "#ffca28", 10, 120);
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 400;
+        this.canvas.height = 200;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+      stop : function() {
+        clearInterval(this.interval);
+    }
+}
+
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }    
+}
+
+function updateGameArea() {
+    myGameArea.clear();
+    myGamePiece.newPos();    
+    myGamePiece.update();
+}
+
+function moveup() {
+    myGamePiece.speedY = -1; 
+}
+
+function movedown() {
+ 
+    myGamePiece.speedY = 1; 
+}
+
+function moveleft() {
+  
+    myGamePiece.speedX = -1; 
+}
+
+function moveright() {
+  myGamePiece.speedX = 1; 
+}
+
+function clearmove() {
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = 0; 
+}
+function clearmove() {
+ 
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = 0; 
+}
+  </script>
+
+<html>
+<head>
+<body>
+
+
+<form action="remoteR1.php" method="post">
+
+<div clss="main"> 
+  <div id ="a1">
+    <tr><th>motor1 </th></tr>                                        
+ <input type="range"min="0"min="100" value="50" id = "motor1">
+    </div>
+  <div id ="a2">
+  <tr><th>motor2 </th></tr> 
+  <input type="range"min="0"min="100" value="50" id = "motor2">
+    </div>
+    <div id ="a3">
+  <tr><th>motor3 </th></tr> 
+  <input type="range"min="0"min="100" value="50" id = "motor3">
+          </div>
+
+        <div id ="a4">
+  <tr><th>motor4 </th></tr> 
+  <input type="range"min="0"min="100" value="50" id = "motor4">
+               </div>
+
+          <div id ="a5">
+
+  <tr><th>motor5 </th></tr> 
+  <input type="range"min="0"min="100" value="50" id = "motor5">
+             </div>
+ 
+            <div id ="a6">
+
+    <tr><th>motor6 </th></tr> 
+   <input  type="range"min="0"min="100" value="50" id = "motor6"> 
+                  </div>
+
+
+
+ 
+<tr>
+    <td><input type="button" value="save" name="save" " onclick="alert('save')"></td>
+    <td><input type="button" value="run" name="run" " onclick="alert('on')"></td>
+ </tr>
+</div>
+
+<script>
+
+if(save==1){
+
+echo <form action="robot2.php" method="post">;
+}
+
+</script>
+
+ </form> 
+
+ 
+  
+ 
+  
+  </body>
+  </html>
